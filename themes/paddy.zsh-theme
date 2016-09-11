@@ -13,7 +13,7 @@ function get_directory {
 		[[ $line = "#"* ]] && continue
 		variable=${line[(ws:=:)1]} | sed -e 's/^ *//' | sed -e 's/ *$//'
 		dir=${line[(ws:=:)2]} | sed -e 's/^ *//' | sed -e 's/ *$//'
-		[[ $DIR = $dir* ]] && echo ${DIR/#$dir/\$$variable} && return
+		[[ $DIR = $dir* ]] && echo ${DIR/#$dir/%{$reset_color%}%{$FG[003]%}\$$variable%{$fg_bold[green]%}} && return
 	done < ~/.specialdirs
 	echo $DIR && return
 }
